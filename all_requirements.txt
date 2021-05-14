@@ -1,0 +1,4 @@
+notebook
+beautifulsoup4
+scrapy
+python-twitter
