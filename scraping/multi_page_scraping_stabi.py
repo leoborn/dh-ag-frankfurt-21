@@ -1,11 +1,30 @@
+"""
+This scraper iterates through the online list of Japanese students in Germany during the Meiji era and downloads information on them.
+
+It demonstrates the usage of scrapy as part of a standard Python script.
+This was done because we intend to first iterate over all pages and collect information on all persons,
+and only save them once after we are done scraping the information.
+
+Run this script like this: python multi_page_scraping_stabi.py
+"""
+
 import scrapy
+# Because we want to run the scraper from within the script, we need to import CrawlerProcess.
 from scrapy.crawler import CrawlerProcess
 import re
 
+# Here, we initialize an empty list for all persons that we find.
 COLLECTED_PEOPLE = []
 
+# Our main scraper, StabiSpider. This is a self-contained class that defines what our crawler is.
 class StabiSpider(scrapy.Spider):
+
+    # The following are four class variables, associated with each instance of our StabiSpider.
+    # The first two are required by scrapy.
+
+    # The crawler needs a name (required)
     name = 'stabispider'
+    # The list of URLs that serve as the starting point for scrapint (required)
     start_urls = ['https://themen.crossasia.org/japans-studierende/index/show']
     current_page = 1
     last_page = 0
@@ -45,24 +64,24 @@ class StabiSpider(scrapy.Spider):
                 COLLECTED_PEOPLE.append(new_person)
         
         # If we have not yet determined what the last page number is,
-        # we need to identify it here once
+        # we need to identify it here once.
         if self.last_page == 0:
             # We know that pagination is inside a div with class "pages",
-            # therefore we select all links under the "pages" divs
+            # therefore we select all links under the "pages" divs.
             pagination = response.css('.pages a')
             print(pagination)
 
             # We know that the last page link is the last element of the list ([-1]),
-            # so we only access this element and get its "href" value
+            # so we only access this element and get its "href" value.
             link_to_last_page = pagination[-1].css('::attr(href)').get()
             print(link_to_last_page)
             
             # We know the link is formed "index/show/page/X" so in order to get the number,
-            # we split at that substring and take the last element (X) and cast it as an integer
+            # we split at that substring and take the last element (X) and cast it as an integer.
             self.last_page = int(link_to_last_page.split("index/show/page/")[-1])
             print(self.last_page)
 
-        # Only access the next page if the current page value is smaller than or equal to the last page value
+        # Only access the next page if the current page value is smaller than or equal to the last page value.
         if self.current_page <= self.last_page:
             next_page = self.start_urls[0] + '/page/' + str(self.current_page)
             print("Next page:", next_page)
@@ -78,4 +97,4 @@ process.crawl(StabiSpider)
 process.start() # the script will block here until the crawling is finished
 
 print("Finished scraping. We collected", len(COLLECTED_PEOPLE),"persons from the source!")
-print(COLLECTED_PEOPLE)
+#print(COLLECTED_PEOPLE)
