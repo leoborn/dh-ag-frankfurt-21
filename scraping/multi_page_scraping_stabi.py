@@ -135,16 +135,16 @@ class StabiSpider(scrapy.Spider):
 # The following is needed for running scrapy from within a script.
 # We first create a process with the signature of a web browser.
 process = CrawlerProcess({
-    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
+    'USER_AGENT': 'Mozilla/5.0'
 })
 # Then we use this process to invoke our StabiSpider
 process.crawl(StabiSpider)
 # This ensures that all the subseqeunt code will only be executed once the crawling is finished.
 process.start()
 
-print("Finished scraping. We collected", len(COLLECTED_PEOPLE),"persons from the source!")
-"""
+print("Finished scraping. We collected", len(COLLECTED_PEOPLE), "persons from the source!")
+print("Saving output to file...")
 with open("japanese_students.json", 'w') as result_file:
     json_string = json.dumps(COLLECTED_PEOPLE, indent=4)
     result_file.write(json_string)
-"""
+print("Done!")
