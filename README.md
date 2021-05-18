@@ -19,12 +19,12 @@ Note that each sub-directory for the more advanced sessions (**./scraping** and 
 This is simply to delineate which additional libraries are used for which specific task.
 For the purpose of the sessions, you only need to use the _all\_requirements.txt_ file.
 
-We will provide all scripts as pure Pyton scripts (.py extension) as well as Jupyter notebooks (.ipynb), if possible.
+We will provide all scripts as pure Pyton scripts (.py extension) as well as Jupyter notebooks (.ipynb extension), if possible.
 This is to ensure that you understand how all scripts work step-by-step by using Jupyter notebooks, but also to enable you to run them as standalone programs using Python. 
 
 The introductory script is only available as a Jupyter notebook since it only contains examples that do not constitute a standalone program.
-The multi-page scraping scripts are only avalaible as Python files for the reasons outlined below.
-We will explore these scripts by reading the comments accompanying the code.
+The multi-page scraping script is only avalaible as a Python file for the reasons outlined below.
+We will explore this script by reading the comments accompanying the code.
 
 ## Structure
 
@@ -39,6 +39,7 @@ The former is concerned with just retrieving the information contained on one we
 The latter will demonstrate how to iterate through a web resource that contains links to other web pages; for this purpose, we use the _scrapy_ library.
 
 Since _scrapy_ requires us to write a self-contained scraper, we cannot easily demonstrate its inner workings using Jupyter notebooks.
-Therefore, the _scrapy_ scripts are commented extensively and we will thus explore the scripts following the comments before running them.
+Therefore, the _scrapy_ script is commented extensively and we will thus explore the script following the comments before running it.
 
-Lastly, the _scrapy_ scripts show two ways of running them: once using the ```scrapy``` command on the command-line and once as part of a standard Python script that is invoked using ```python```.
+Lastly, while _scrapy_ scripts can be run in two ways, once using the ```scrapy``` command on the command-line and once as part of a standard Python script that is invoked using ```python```,
+we will only present the latter form.
