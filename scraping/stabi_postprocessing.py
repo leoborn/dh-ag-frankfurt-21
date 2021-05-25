@@ -51,7 +51,7 @@ for student in data:
 
 
 # Student date processing
-# Task: Separate Japanese from Romaji names
+# Task: Parse all given dates and get all birth years and their frequencies
 # 
 # We might encounter ill-formed dates, so we set a counter to see how many dates could not be parsed.
 unparseable_dates = 0
