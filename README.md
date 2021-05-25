@@ -43,3 +43,7 @@ Therefore, the _scrapy_ script is commented extensively and we will thus explore
 
 Lastly, while _scrapy_ scripts can be run in two ways, once using the ```scrapy``` command on the command-line and once as part of a standard Python script that is invoked using ```python```,
 we will only present the latter form.
+
+### **./twitter**
+
+The last session will focus on the Twitter API.
