@@ -72,15 +72,18 @@ for student in data:
   if len(date_list) == 2:
     first_date = date_list[0]
     second_date = date_list[1]
+    # Only continue if non-empty.
     if first_date != "":
       try:
         birth_date = dateparser.parse(first_date)
         print("Birth date:", birth_date)
+        # The year of a parsed date can be accessed with .year.
         print("Birth year:", birth_date.year)
         birth_year_list.append(birth_date.year)
       except:
         print(first_date, "cannnot be parsed!")
         unparseable_dates += 1
+    # Only continue if non-empty.
     if second_date != "":
       try:
         death_date = dateparser.parse(second_date)
@@ -91,7 +94,9 @@ for student in data:
         unparseable_dates += 1
 
 print(unparseable_dates, "dates could not be parsed.")
+# Automatically generate a frequency distribution from the birth year List.
 fdist = FreqDist(birth_year_list)
+# Print out the 20 most common birth years.
 print("Most common birth years and their frequencies:")
 print(fdist.most_common(20))
 
@@ -103,10 +108,13 @@ print(fdist.most_common(20))
 all_universities = []
 for student in data:
   text = student['Text']
+  # Running spacy on the text amounts to calling nlp(text).
   parsed_text = nlp(text)
-  for ent in parsed_text.ents:
-    if ent.text.startswith("U "):
-      all_universities.append(ent.text)
+  # We can access all named entities using .ents.
+  for named_entity in parsed_text.ents:
+    # We take all named entities starting with "U " (e.g. "U Berlin") to be indicative of a university.
+    if named_entity.text.startswith("U "):
+      all_universities.append(named_entity.text)
 uni_fdist = FreqDist(all_universities)
 print("Most common universities and their frequencies:")
 print(uni_fdist.most_common(20))
@@ -120,7 +128,9 @@ for student in data:
   name = student['Name']
   persons_to_text_places[name] = []
   text = student['Text']
+  # Running spacy on the text amounts to calling nlp(text).
   parsed_text = nlp(text)
+  # We can access all named entities using .ents.
   for named_entity in parsed_text.ents:
     if named_entity.label_ == "LOC":
       persons_to_text_places[name].append(named_entity.text)
