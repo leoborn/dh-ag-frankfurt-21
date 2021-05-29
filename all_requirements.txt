@@ -3,6 +3,7 @@ beautifulsoup4
 scrapy
 spacy
 de-core-news-md @ https://github.com/explosion/spacy-models/releases/download/de_core_news_md-3.0.0/de_core_news_md-3.0.0.tar.gz
+ja-core-news-md @ https://github.com/explosion/spacy-models/releases/download/ja_core_news_md-3.0.0/ja_core_news_md-3.0.0.tar.gz
 dateparser
 nltk
 python-twitter
