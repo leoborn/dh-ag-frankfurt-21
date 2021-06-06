@@ -46,4 +46,6 @@ we will only present the latter form.
 
 ### **./twitter**
 
-The last session will focus on the Twitter API.
+The last session will focus on the Twitter API. It is split into two scripts: _get\_tweets_ and _analyze\_tweets_.
+Both are present as Python scripts as well as Jupyter notebooks.
+Note that the credentials needed to use the Twitter API will be provided in-session.
